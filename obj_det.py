@@ -27,6 +27,9 @@ COCO_INSTANCE_CATEGORY_NAMES = [
 img = Image.open(img_path) # Load the image
 
 def get_prediction(model, img, threshold):
+  """
+  Returns the predictions in terms of boxes, class and scores
+  """
   transform = transforms.Compose([transforms.ToTensor()]) # Defing PyTorch Transform
   img = transform(img) # Apply the transform to the image
   pred = model([img]) # Pass the image to the model
@@ -46,6 +49,9 @@ def return_one(bx, cl, sc):
   return bx
 
 def object_detection(bx, img_path):
+  """
+  Returns the image with bounding boxes, scores and classes
+  """
   img = cv2.imread(img_path)
 
   for i, j in enumerate(bx):
@@ -56,7 +62,9 @@ def object_detection(bx, img_path):
   return pil
 
 def image_predictions(model, img_path,threshold):
-  
+  """
+  Return the combined output of images
+  """
   img = Image.open(img_path)
   pre_bx, pre_cl, pre_score = get_prediction(model, img, threshold)
   all_ = return_one(pre_bx, pre_cl, pre_score)
@@ -65,7 +73,9 @@ def image_predictions(model, img_path,threshold):
   return pil_img
 
 def video_detection(model, input_file, output_file, fps=30, score_filter=0.6):
-
+    """
+    Returns detections from video and save them in separate files
+    """
     # Read in the video
     video = cv2.VideoCapture(input_file)
 
