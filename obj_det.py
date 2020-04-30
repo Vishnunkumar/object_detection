@@ -4,10 +4,9 @@ from torchvision import transforms
 from PIL import Image
 import cv2
 
-img_path = 'lockdown.jpg'
-
-detection = torchvision.models.detection.fasterrcnn_resnet50_fpn(pretrained=True)
-detection.eval()
+#img_path = 'lockdown.jpg'
+#detection = torchvision.models.detection.fasterrcnn_resnet50_fpn(pretrained=True)
+#detection.eval()
 
 COCO_INSTANCE_CATEGORY_NAMES = [
     '__background__', 'person', 'bicycle', 'car', 'motorcycle', 'airplane', 'bus',
